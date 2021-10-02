@@ -1,0 +1,2 @@
+# hot-100-muisc-recommender
+Using data scraped from the wiki pages for the Billboard Hot 100 for the years 1960-1999, as well as the Spotify API, recommend songs similar to musical qualities of user input song from the Hot 100. This is a content-based music recommender and all music qualities and metadata have been gathered from Spotify's WebAPI Track Features endpoint and Track Analysis endpoint.
