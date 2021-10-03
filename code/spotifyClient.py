@@ -10,12 +10,10 @@ import datetime
 import base64
 from urllib.parse import urlencode
 import json
+import time
 import os
 
 import requests
-
-
-# # Spotify WebAPI Client
 
 # Source: https://www.youtube.com/watch?v=xdq6Gz33khQ&t=184s
 
@@ -62,9 +60,12 @@ class SpotifyAPI(object):
         token_headers = self.get_token_headers()
 
         r = requests.post(token_url, data=token_data, headers=token_headers)
-        if r.status_code not in range(200, 299):
-            raise Exception("Could not authenticate client.")
         data = r.json()
+        if r.status_code == 429:
+            time.sleep(data['Retry-After'])
+            self.perform_auth()
+        if r.status_code not in range(200, 299):
+            raise Exception(f"{r.status_code}: Could not authenticate client")
         now = datetime.datetime.now()
         access_token = data['access_token']
         expires_in = data['expires_in'] # seconds
