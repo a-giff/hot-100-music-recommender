@@ -20,7 +20,7 @@
 **Data Dictionary**
 
 |Variable   |Description   |Dataset   |
-|---|---|---|---|---|
+|---|---|---|
 |Song  | Name of Song  | hot100_60-99  |
 |Artist(s) | Name of Artist  | hot100_60-99  |
 |year | Year song appeared on Hot 100  | hot100_60-99  |
@@ -53,6 +53,6 @@
 |mode_confidence| Feature Analysis|spotify_final|
 |genres| Artist Genre from Spotify | spotify_final|
 |year| Year on Hot 100| spotify_final|
-|decade| Decade in Hot 100| spotify_final
+|decade| Decade in Hot 100| spotify_final|
 
 **
