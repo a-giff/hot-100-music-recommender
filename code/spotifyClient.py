@@ -60,12 +60,11 @@ class SpotifyAPI(object):
         token_headers = self.get_token_headers()
 
         r = requests.post(token_url, data=token_data, headers=token_headers)
-        data = r.json()
-        if r.status_code == 429:
-            time.sleep(data['Retry-After'])
-            self.perform_auth()
         if r.status_code not in range(200, 299):
-            raise Exception(f"{r.status_code}: Could not authenticate client")
+            time.sleep(3)
+            self.perform_auth()
+#             raise Exception(f"{r.status_code}: Could not authenticate client")
+        data = r.json()
         now = datetime.datetime.now()
         access_token = data['access_token']
         expires_in = data['expires_in'] # seconds
@@ -142,5 +141,4 @@ class SpotifyAPI(object):
                 if isinstance(operator_query, str):
                     query = f"{query} {operator} {operator_query}"
         query_params = urlencode({"q": query, "type": search_type.lower()})
-        print(query_params)
         return self.base_search(query_params)
