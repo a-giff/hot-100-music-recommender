@@ -18,6 +18,7 @@
 
 
 **Data Dictionary**
+
 |Variable   |Description   |Dataset   |
 |---|---|---|---|---|
 |Song  | Name of Song  | hot100_60-99  |
